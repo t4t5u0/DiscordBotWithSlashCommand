@@ -14,7 +14,16 @@ class Slash(commands.Cog):
         # embed = discord.Embed(title="鳴き声")
         await ctx.send(content=f"{ctx.author.mention} にゃーん")
 
-    @cog_ext.cog_slash(name="echo")
+    @cog_ext.cog_slash(name="echo",
+                       description="引数を1つ受け取り、そのまま返す",
+                       options=[
+                           create_option(
+                               name="arg",
+                               description="引数",
+                               option_type=3,
+                               required=True
+                           )
+                       ])
     async def echo(self, ctx: SlashContext, arg: str):
         "引数を1つ受け取り、そのまま返す"
         await ctx.send(content=arg)
